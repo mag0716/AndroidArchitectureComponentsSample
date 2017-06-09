@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
 
 def support_library_version = "25.3.1"
-def android_architecture_components_version = "1.0.0-alpha1"
+def android_architecture_components_version = "1.0.0-alpha2"
 
 android {
     compileSdkVersion 25
