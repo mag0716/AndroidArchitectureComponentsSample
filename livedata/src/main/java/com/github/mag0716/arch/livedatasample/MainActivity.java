@@ -9,6 +9,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Single;
+import io.reactivex.schedulers.Schedulers;
+
 public class MainActivity extends AppCompatActivity implements LifecycleRegistryOwner {
 
     private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
@@ -26,6 +31,12 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
         valueEditText = (EditText) findViewById(R.id.value_edit_text);
         findViewById(R.id.set_value_button).setOnClickListener(view -> {
             valueLiveData.setValue(valueEditText.getText().toString());
+        });
+        findViewById(R.id.post_value_button).setOnClickListener(view -> {
+            Single.just(valueEditText.getText().toString())
+                    .subscribeOn(Schedulers.io())
+                    .delay(5, TimeUnit.SECONDS)
+                    .subscribe(value -> valueLiveData.postValue(value));
         });
 
         valueLiveData.observe(this, changedValue -> {
