@@ -1,8 +1,8 @@
-package com.github.mag0716.androidarchitecturecomponentssample;
+package com.github.mag0716.arch.lifecyclesample;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

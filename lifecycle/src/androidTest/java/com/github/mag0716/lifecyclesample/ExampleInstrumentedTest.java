@@ -1,4 +1,4 @@
-package com.github.mag0716.androidarchitecturecomponentssample;
+package com.github.mag0716.lifecyclesample;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
