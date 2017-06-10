@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidArchitectureComponentsSample.iml" filepath="$PROJECT_DIR$/AndroidArchitectureComponentsSample.iml" />
       <module fileurl="file://$PROJECT_DIR$/lifecycle/app.iml" filepath="$PROJECT_DIR$/lifecycle/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/livedata/livedata.iml" filepath="$PROJECT_DIR$/livedata/livedata.iml" />
     </modules>
   </component>
 </project>
