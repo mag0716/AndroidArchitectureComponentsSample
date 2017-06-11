@@ -2,8 +2,11 @@ package com.github.mag0716.arch.livedatasample;
 
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,15 +21,57 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
 
     private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
-    private TextView resultText;
-    private EditText valueEditText;
+    private TextView resultText, mapResultText;
+    private EditText valueEditText, mapValueEditText;
 
     private MutableLiveData<String> valueLiveData = new MutableLiveData<>();
+
+    private MutableLiveData<User> userLiveData = new MutableLiveData<>();
+    private LiveData<String> userNameLiveData = Transformations.map(userLiveData, user -> user.name);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initView();
+        initViewForMap();
+
+        valueLiveData.observe(this, changedValue -> {
+            resultText.setText(changedValue);
+            Toast.makeText(MainActivity.this, "onChanged : " + changedValue, Toast.LENGTH_SHORT).show();
+        });
+        userNameLiveData.observe(this, changedValue -> {
+            mapResultText.setText(changedValue);
+            Toast.makeText(MainActivity.this, "onChanged : " + changedValue, Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    @Override
+    public LifecycleRegistry getLifecycle() {
+        return lifecycleRegistry;
+    }
+
+    private class User {
+        final String id;
+        final String name;
+
+        public User(String id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("User(%s, %s)", id, name);
+        }
+    }
+
+    private User createUser(@NonNull String id) {
+        return new User(id, String.format("name%s", id));
+    }
+
+    private void initView() {
         resultText = (TextView) findViewById(R.id.result_text);
         valueEditText = (EditText) findViewById(R.id.value_edit_text);
         findViewById(R.id.set_value_button).setOnClickListener(view -> {
@@ -38,15 +83,14 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
                     .delay(5, TimeUnit.SECONDS)
                     .subscribe(value -> valueLiveData.postValue(value));
         });
-
-        valueLiveData.observe(this, changedValue -> {
-            resultText.setText(changedValue);
-            Toast.makeText(MainActivity.this, "onChanged : " + changedValue, Toast.LENGTH_SHORT).show();
-        });
     }
 
-    @Override
-    public LifecycleRegistry getLifecycle() {
-        return lifecycleRegistry;
+    private void initViewForMap() {
+        mapResultText = (TextView) findViewById(R.id.map_result_text);
+        mapValueEditText = (EditText) findViewById(R.id.map_value_edit_text);
+        findViewById(R.id.map_set_value_button).setOnClickListener(view -> {
+            final String id = mapValueEditText.getText().toString();
+            userLiveData.setValue(createUser(id));
+        });
     }
 }
