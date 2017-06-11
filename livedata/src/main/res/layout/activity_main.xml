@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.github.mag0716.arch.livedatasample.MainActivity">
+
+    <TextView
+        android:id="@+id/result_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Result Text(Default)"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <EditText
+        android:id="@+id/value_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/result_text"
+        app:layout_constraintVertical_bias="0" />
+
+    <Button
+        android:id="@+id/set_value_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="setValue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/post_value_button"
+        app:layout_constraintTop_toBottomOf="@id/value_edit_text"
+        app:layout_constraintVertical_bias="0" />
+
+    <Button
+        android:id="@id/post_value_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="postValue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/value_edit_text"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/map_result_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Transformations.map Result Text(Default)"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_value_button"
+        app:layout_constraintVertical_bias="0" />
+
+    <EditText
+        android:id="@+id/map_value_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/map_result_text"
+        app:layout_constraintVertical_bias="0" />
+
+    <Button
+        android:id="@+id/map_set_value_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="setValue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/map_value_edit_text"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/switch_map_result_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Transformations.switchMap Result Text(Default)"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/map_set_value_button"
+        app:layout_constraintVertical_bias="0" />
+
+    <EditText
+        android:id="@+id/switch_map_value_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switch_map_result_text"
+        app:layout_constraintVertical_bias="0" />
+
+    <Button
+        android:id="@+id/switch_map_set_value_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="setValue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switch_map_value_edit_text"
+        app:layout_constraintVertical_bias="0" />
+</android.support.constraint.ConstraintLayout>
