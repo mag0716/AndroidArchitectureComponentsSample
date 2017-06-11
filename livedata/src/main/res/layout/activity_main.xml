@@ -20,6 +20,7 @@
         android:id="@+id/value_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:maxLines="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/result_text"
@@ -63,6 +64,7 @@
         android:id="@+id/map_value_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:maxLines="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/map_result_text"
@@ -78,5 +80,37 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/map_value_edit_text"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/switch_map_result_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Transformations.switchMap Result Text(Default)"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/map_set_value_button"
+        app:layout_constraintVertical_bias="0" />
+
+    <EditText
+        android:id="@+id/switch_map_value_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switch_map_result_text"
+        app:layout_constraintVertical_bias="0" />
+
+    <Button
+        android:id="@+id/switch_map_set_value_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="setValue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switch_map_value_edit_text"
         app:layout_constraintVertical_bias="0" />
 </android.support.constraint.ConstraintLayout>

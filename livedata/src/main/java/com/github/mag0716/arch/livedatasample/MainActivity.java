@@ -21,13 +21,20 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
 
     private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
-    private TextView resultText, mapResultText;
-    private EditText valueEditText, mapValueEditText;
+    private TextView resultText, mapResultText, switchMapResultText;
+    private EditText valueEditText, mapValueEditText, switchMapValueEditText;
 
     private MutableLiveData<String> valueLiveData = new MutableLiveData<>();
 
     private MutableLiveData<User> userLiveData = new MutableLiveData<>();
     private LiveData<String> userNameLiveData = Transformations.map(userLiveData, user -> user.name);
+
+    private MutableLiveData<String> userIdLiveData = new MutableLiveData<>();
+    private LiveData<User> lazyUserLiveData = Transformations.switchMap(userIdLiveData, id -> {
+        MutableLiveData<User> liveData = new MutableLiveData<>();
+        liveData.setValue(createUser(id));
+        return liveData;
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
 
         initView();
         initViewForMap();
+        initViewForSwitchMap();
 
         valueLiveData.observe(this, changedValue -> {
             resultText.setText(changedValue);
@@ -44,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
         userNameLiveData.observe(this, changedValue -> {
             mapResultText.setText(changedValue);
             Toast.makeText(MainActivity.this, "onChanged : " + changedValue, Toast.LENGTH_SHORT).show();
+        });
+        lazyUserLiveData.observe(this, changedValue -> {
+            switchMapResultText.setText(changedValue.toString());
+            Toast.makeText(MainActivity.this, "onChanged : " + changedValue.toString(), Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -91,6 +103,14 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
         findViewById(R.id.map_set_value_button).setOnClickListener(view -> {
             final String id = mapValueEditText.getText().toString();
             userLiveData.setValue(createUser(id));
+        });
+    }
+
+    private void initViewForSwitchMap() {
+        switchMapResultText = (TextView) findViewById(R.id.switch_map_result_text);
+        switchMapValueEditText = (EditText) findViewById(R.id.switch_map_value_edit_text);
+        findViewById(R.id.switch_map_set_value_button).setOnClickListener(view -> {
+            userIdLiveData.setValue(switchMapValueEditText.getText().toString());
         });
     }
 }
