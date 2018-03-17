@@ -10,17 +10,20 @@ import hugo.weaving.DebugLog;
 
 public class MainActivity extends AppCompatActivity {
 
+    private TestObserver lifecycleObserver = new TestObserver();
+
     @DebugLog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getLifecycle().addObserver(new TestObserver());
+        getLifecycle().addObserver(lifecycleObserver);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        getLifecycle().removeObserver(lifecycleObserver);
     }
 
     static class TestObserver implements LifecycleObserver {
