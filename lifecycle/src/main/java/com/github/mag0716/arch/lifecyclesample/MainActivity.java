@@ -4,6 +4,7 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.OnLifecycleEvent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -12,6 +13,7 @@ import hugo.weaving.DebugLog;
 public class MainActivity extends AppCompatActivity {
 
     private TestObserver lifecycleObserver = new TestObserver();
+    private Intent serviceIntent;
 
     @DebugLog
     @Override
@@ -19,6 +21,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getLifecycle().addObserver(lifecycleObserver);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        serviceIntent = new Intent(this, LoggingService.class);
+        startService(serviceIntent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopService(serviceIntent);
     }
 
     @Override
