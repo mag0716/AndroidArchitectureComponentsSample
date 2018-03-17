@@ -23,3 +23,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# for Android Architecture Components : Lifecycles
+-keep class * implements android.arch.lifecycle.GeneratedAdapter {<init>(...);}
