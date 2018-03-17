@@ -3,14 +3,14 @@ package com.github.mag0716.arch.lifecyclesample;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LifecycleRegistry;
-import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.OnLifecycleEvent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 import hugo.weaving.DebugLog;
 
-public class MainActivity extends AppCompatActivity implements LifecycleRegistryOwner {
+public class MainActivity extends AppCompatActivity {
 
     private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
         super.onDestroy();
     }
 
+    @NonNull
     @Override
     public LifecycleRegistry getLifecycle() {
         return lifecycleRegistry;

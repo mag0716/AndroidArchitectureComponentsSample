@@ -1,7 +1,6 @@
 package com.github.mag0716.arch.livedatasample;
 
 import android.arch.lifecycle.LifecycleRegistry;
-import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
@@ -17,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
-public class MainActivity extends AppCompatActivity implements LifecycleRegistryOwner {
+public class MainActivity extends AppCompatActivity {
 
     private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
