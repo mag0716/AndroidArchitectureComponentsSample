@@ -58,5 +58,10 @@ public class MainActivity extends AppCompatActivity {
         @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
         void onDestroy(LifecycleOwner owner) {
         }
+
+        @DebugLog
+        @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
+        void onAny(LifecycleOwner owner, Lifecycle.Event event) {
+        }
     }
 }
