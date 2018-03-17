@@ -2,6 +2,7 @@ package com.github.mag0716.arch.lifecyclesample;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.OnLifecycleEvent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -30,32 +31,32 @@ public class MainActivity extends AppCompatActivity {
 
         @DebugLog
         @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-        void onCreate() {
+        void onCreate(LifecycleOwner owner) {
         }
 
         @DebugLog
         @OnLifecycleEvent(Lifecycle.Event.ON_START)
-        void onStart() {
+        void onStart(LifecycleOwner owner) {
         }
 
         @DebugLog
         @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-        void onResume() {
+        void onResume(LifecycleOwner owner) {
         }
 
         @DebugLog
         @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-        void onPause() {
+        void onPause(LifecycleOwner owner) {
         }
 
         @DebugLog
         @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-        void onStop() {
+        void onStop(LifecycleOwner owner) {
         }
 
         @DebugLog
         @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-        void onDestroy() {
+        void onDestroy(LifecycleOwner owner) {
         }
     }
 }
