@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.github.mag0716.arch.livedatasample"
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -35,8 +35,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation "com.android.support:appcompat-v7:$support_library_version"
+    implementation "com.android.support:support-v4:$support_library_version"
+    implementation "com.android.support:support-vector-drawable:$support_library_version"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation "android.arch.lifecycle:runtime:$android_architecture_components_version"
     implementation "android.arch.lifecycle:extensions:$android_architecture_components_version"
     annotationProcessor "android.arch.lifecycle:compiler:$android_architecture_components_version"
 

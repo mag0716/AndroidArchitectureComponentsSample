@@ -1,7 +1,5 @@
 package com.github.mag0716.arch.livedatasample;
 
-import android.arch.lifecycle.LifecycleRegistry;
-import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
@@ -17,9 +15,7 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
-public class MainActivity extends AppCompatActivity implements LifecycleRegistryOwner {
-
-    private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
+public class MainActivity extends AppCompatActivity {
 
     private TextView resultText, mapResultText, switchMapResultText;
     private EditText valueEditText, mapValueEditText, switchMapValueEditText;
@@ -57,11 +53,6 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
             switchMapResultText.setText(changedValue.toString());
             Toast.makeText(MainActivity.this, "onChanged : " + changedValue.toString(), Toast.LENGTH_SHORT).show();
         });
-    }
-
-    @Override
-    public LifecycleRegistry getLifecycle() {
-        return lifecycleRegistry;
     }
 
     private class User {
