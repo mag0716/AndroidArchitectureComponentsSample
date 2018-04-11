@@ -1,1 +1,1 @@
-include ':lifecycle', ':livedata'
+include ':lifecycle', ':livedata', ':common'

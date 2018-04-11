@@ -3,6 +3,8 @@ package com.github.mag0716.arch.lifecyclesample;
 import android.app.Application;
 import android.arch.lifecycle.ProcessLifecycleOwner;
 
+import com.github.mag0716.common.LoggingObserver;
+
 import hugo.weaving.DebugLog;
 
 /**
