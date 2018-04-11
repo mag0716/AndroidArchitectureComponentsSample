@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 
@@ -12,6 +13,7 @@ public class ClockLiveData extends LiveData<Date> {
 
     private Disposable disposable;
 
+    @DebugLog
     @Override
     protected void onActive() {
         super.onActive();
@@ -19,6 +21,7 @@ public class ClockLiveData extends LiveData<Date> {
                 .subscribe(interval -> postValue(new Date(System.currentTimeMillis())));
     }
 
+    @DebugLog
     @Override
     protected void onInactive() {
         super.onInactive();
