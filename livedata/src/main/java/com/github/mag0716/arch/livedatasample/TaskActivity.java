@@ -1,24 +1,23 @@
 package com.github.mag0716.arch.livedatasample;
 
+import android.arch.lifecycle.Observer;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.github.mag0716.common.LoggingObserver;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-
-public class TaskActivity extends AppCompatActivity {
+public class TaskActivity extends AppCompatActivity implements Observer<Date> {
 
     private final LoggingObserver loggingObserver = new LoggingObserver();
+    private final ClockLiveData clockLiveData = new ClockLiveData();
     private TextView text;
-    private Disposable disposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +31,13 @@ public class TaskActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        disposable = Observable.interval(1, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(interval -> updateText());
+        clockLiveData.observe(this, this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (disposable != null) {
-            disposable.dispose();
-        }
+        clockLiveData.removeObserver(this);
     }
 
     @Override
@@ -51,8 +46,13 @@ public class TaskActivity extends AppCompatActivity {
         getLifecycle().removeObserver(loggingObserver);
     }
 
-    private void updateText() {
+    @Override
+    public void onChanged(@Nullable Date date) {
+        updateText(date);
+    }
+
+    private void updateText(@NonNull Date date) {
         final SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.getDefault());
-        text.setText(format.format(System.currentTimeMillis()));
+        text.setText(format.format(date));
     }
 }
