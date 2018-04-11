@@ -45,4 +45,5 @@ dependencies {
 
     // for test
     testImplementation 'junit:junit:4.12'
+    compile project(path: ':common')
 }
