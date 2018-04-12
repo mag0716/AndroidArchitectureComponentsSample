@@ -1,6 +1,7 @@
 package com.github.mag0716.arch.livedatasample;
 
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,14 +17,17 @@ import java.util.Locale;
 public class TaskActivity extends AppCompatActivity implements Observer<Date> {
 
     private final LoggingObserver loggingObserver = new LoggingObserver();
-    private final ClockLiveData clockLiveData = new ClockLiveData();
+    //private final ClockLiveData clockLiveData = new ClockLiveData();
+    private ClockViewModel clockViewModel;
     private TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
+        clockViewModel = ViewModelProviders.of(this).get(ClockViewModel.class);
         text = findViewById(R.id.text);
+
 
         getLifecycle().addObserver(loggingObserver);
     }
@@ -31,13 +35,15 @@ public class TaskActivity extends AppCompatActivity implements Observer<Date> {
     @Override
     protected void onResume() {
         super.onResume();
-        clockLiveData.observe(this, this);
+        //clockLiveData.observe(this, this);
+        clockViewModel.getClock().observe(this, this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        clockLiveData.removeObserver(this);
+        //clockLiveData.removeObserver(this);
+        clockViewModel.getClock().removeObserver(this);
     }
 
     @Override

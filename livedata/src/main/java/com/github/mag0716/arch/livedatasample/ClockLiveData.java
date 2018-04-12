@@ -1,6 +1,6 @@
 package com.github.mag0716.arch.livedatasample;
 
-import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -9,7 +9,7 @@ import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 
-public class ClockLiveData extends LiveData<Date> {
+public class ClockLiveData extends MutableLiveData<Date> {
 
     private Disposable disposable;
 
