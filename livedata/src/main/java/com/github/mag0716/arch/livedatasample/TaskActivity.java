@@ -1,22 +1,19 @@
 package com.github.mag0716.arch.livedatasample;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.github.mag0716.arch.livedatasample.databinding.ActivityTaskBinding;
 import com.github.mag0716.common.LoggingObserver;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-public class TaskActivity extends AppCompatActivity implements Observer<Date> {
+public class TaskActivity extends AppCompatActivity {
 
     private final LoggingObserver loggingObserver = new LoggingObserver();
+
+    private ActivityTaskBinding binding;
     //private final ClockLiveData clockLiveData = new ClockLiveData();
     private ClockViewModel clockViewModel;
     private TextView text;
@@ -24,10 +21,12 @@ public class TaskActivity extends AppCompatActivity implements Observer<Date> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task);
-        clockViewModel = ViewModelProviders.of(this).get(ClockViewModel.class);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_task);
         text = findViewById(R.id.text);
+        clockViewModel = ViewModelProviders.of(this).get(ClockViewModel.class);
 
+        binding.setLifecycleOwner(this); // Sets the LifecycleOwner that should be used for observing changes of LiveData in this binding.
+        binding.setViewmodel(clockViewModel);
 
         getLifecycle().addObserver(loggingObserver);
     }
@@ -36,14 +35,14 @@ public class TaskActivity extends AppCompatActivity implements Observer<Date> {
     protected void onResume() {
         super.onResume();
         //clockLiveData.observe(this, this);
-        clockViewModel.getClock().observe(this, this);
+        //clockViewModel.getClock().observe(this, this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         //clockLiveData.removeObserver(this);
-        clockViewModel.getClock().removeObserver(this);
+        //clockViewModel.getClock().removeObserver(this);
     }
 
     @Override
@@ -52,13 +51,15 @@ public class TaskActivity extends AppCompatActivity implements Observer<Date> {
         getLifecycle().removeObserver(loggingObserver);
     }
 
-    @Override
-    public void onChanged(@Nullable Date date) {
-        updateText(date);
-    }
-
-    private void updateText(@NonNull Date date) {
-        final SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.getDefault());
-        text.setText(format.format(date));
-    }
+//    @Override
+//    public void onChanged(@Nullable Date date) {
+//        if (date != null) {
+//            updateText(date);
+//        }
+//    }
+//
+//    private void updateText(@NonNull Date date) {
+//        final SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.getDefault());
+//        text.setText(format.format(date));
+//    }
 }

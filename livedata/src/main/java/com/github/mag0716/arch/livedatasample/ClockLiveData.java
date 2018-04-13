@@ -13,12 +13,18 @@ public class ClockLiveData extends MutableLiveData<Date> {
 
     private Disposable disposable;
 
+    public ClockLiveData() {
+        setValue(new Date(System.currentTimeMillis()));
+    }
+
     @DebugLog
     @Override
     protected void onActive() {
         super.onActive();
         disposable = Observable.interval(1, TimeUnit.SECONDS)
-                .subscribe(interval -> postValue(new Date(System.currentTimeMillis())));
+                .subscribe(interval -> {
+                    postValue(new Date(System.currentTimeMillis()));
+                });
     }
 
     @DebugLog
