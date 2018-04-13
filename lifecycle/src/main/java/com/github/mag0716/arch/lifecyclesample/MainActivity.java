@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
+import com.github.mag0716.common.LoggingObserver;
+
 import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;

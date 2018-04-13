@@ -1,4 +1,4 @@
-package com.github.mag0716.arch.lifecyclesample;
+package com.github.mag0716.common;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
